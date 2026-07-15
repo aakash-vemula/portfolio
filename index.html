@@ -6,643 +6,724 @@
 <title>Aakash Vemula — DevOps Engineer II</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #0a0a0f;
-    --bg2: #111118;
-    --bg3: #1a1a25;
-    --accent: #00d4aa;
-    --accent2: #7c6af7;
-    --accent3: #f7a26a;
-    --text: #f0f0f8;
-    --muted: #8888aa;
-    --border: rgba(255,255,255,0.07);
-    --card: rgba(255,255,255,0.03);
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--bg: #0a0a0f;
+--bg2: #111118;
+--bg3: #1a1a25;
+--accent: #00d4aa;
+--accent2: #7c6af7;
+--accent3: #f7a26a;
+--text: #f0f0f8;
+--muted: #8888aa;
+--border: rgba(255,255,255,0.07);
+--card: rgba(255,255,255,0.03);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.1rem 4rem;
-    background: rgba(10,10,15,0.9); backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent); letter-spacing: 2px; }
-  .nav-links { display: flex; gap: 1.8rem; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--accent); }
+/* NAV */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+display: flex; justify-content: space-between; align-items: center;
+padding: 1.1rem 4rem;
+background: rgba(10,10,15,0.9); backdrop-filter: blur(16px);
+border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent); letter-spacing: 2px; }
+.nav-links { display: flex; gap: 1.8rem; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh; display: flex; align-items: center;
-    padding: 8rem 4rem 4rem; position: relative; overflow: hidden;
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(0,212,170,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,170,0.025) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .hero-glow { position: absolute; top: 15%; right: 5%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(124,106,247,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
-  .hero-glow2 { position: absolute; bottom: 5%; left: -5%; width: 450px; height: 450px; background: radial-gradient(circle, rgba(0,212,170,0.07) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
-  .hero-content { position: relative; max-width: 900px; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 2px;
-    border: 1px solid rgba(0,212,170,0.3); padding: 6px 14px; border-radius: 2px; margin-bottom: 2rem;
-  }
-  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: blink 1.5s infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-  h1 { font-size: clamp(3rem, 6.5vw, 5.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 1.2rem; }
-  h1 .line2 { color: var(--accent2); }
-  .hero-role { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent3); letter-spacing: 2px; margin-bottom: 1.5rem; }
-  .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 620px; margin-bottom: 2.5rem; line-height: 1.9; }
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary { background: var(--accent); color: #0a0a0f; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; padding: 13px 28px; border: none; cursor: pointer; text-decoration: none; display: inline-block; text-transform: uppercase; transition: all 0.2s; }
-  .btn-primary:hover { background: #00ffcc; transform: translateY(-2px); }
-  .btn-ghost { border: 1px solid rgba(255,255,255,0.15); color: var(--text); font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; padding: 13px 28px; cursor: pointer; text-decoration: none; display: inline-block; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s; background: transparent; }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-  .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
-  .stat-num { font-family: 'Space Mono', monospace; font-size: 1.8rem; color: var(--accent); font-weight: 700; }
-  .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+/* HERO */
+.hero {
+min-height: 100vh; display: flex; align-items: center;
+padding: 8rem 4rem 4rem; position: relative; overflow: hidden;
+}
+.hero-grid {
+position: absolute; inset: 0;
+background-image: linear-gradient(rgba(0,212,170,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,170,0.025) 1px, transparent 1px);
+background-size: 60px 60px;
+}
+.hero-glow { position: absolute; top: 15%; right: 5%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(124,106,247,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+.hero-glow2 { position: absolute; bottom: 5%; left: -5%; width: 450px; height: 450px; background: radial-gradient(circle, rgba(0,212,170,0.07) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+.hero-content { position: relative; max-width: 900px; }
+.hero-tag {
+display: inline-flex; align-items: center; gap: 8px;
+font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 2px;
+border: 1px solid rgba(0,212,170,0.3); padding: 6px 14px; border-radius: 2px; margin-bottom: 2rem;
+}
+.hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+h1 { font-size: clamp(3rem, 6.5vw, 5.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 1.2rem; }
+h1 .line2 { color: var(--accent2); }
+.hero-role { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent3); letter-spacing: 2px; margin-bottom: 1.5rem; }
+.hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 620px; margin-bottom: 2.5rem; line-height: 1.9; }
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { background: var(--accent); color: #0a0a0f; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; padding: 13px 28px; border: none; cursor: pointer; text-decoration: none; display: inline-block; text-transform: uppercase; transition: all 0.2s; }
+.btn-primary:hover { background: #00ffcc; transform: translateY(-2px); }
+.btn-ghost { border: 1px solid rgba(255,255,255,0.15); color: var(--text); font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; padding: 13px 28px; cursor: pointer; text-decoration: none; display: inline-block; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s; background: transparent; }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.stat-num { font-family: 'Space Mono', monospace; font-size: 1.8rem; color: var(--accent); font-weight: 700; }
+.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
-  /* SECTIONS */
-  section { padding: 6rem 4rem; }
-  .section-tag { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
-  .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; }
-  .section-sub { color: var(--muted); font-size: 1rem; max-width: 520px; margin-bottom: 3rem; line-height: 1.8; }
+/* SECTIONS */
+section { padding: 6rem 4rem; }
+.section-tag { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
+.section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; }
+.section-sub { color: var(--muted); font-size: 1rem; max-width: 520px; margin-bottom: 3rem; line-height: 1.8; }
 
-  /* ABOUT */
-  .about-section { background: var(--bg2); }
-  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
-  .about-body { color: var(--muted); font-size: 15px; line-height: 1.9; }
-  .about-body p { margin-bottom: 1rem; }
-  .about-cards { display: flex; flex-direction: column; gap: 1rem; }
-  .about-card { border: 1px solid var(--border); padding: 1.25rem 1.5rem; background: var(--card); border-left: 2px solid var(--accent); }
-  .about-card-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; margin-bottom: 5px; }
-  .about-card-value { font-size: 14px; font-weight: 700; }
-  .about-card-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+/* ABOUT */
+.about-section { background: var(--bg2); }
+.about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
+.about-body { color: var(--muted); font-size: 15px; line-height: 1.9; }
+.about-body p { margin-bottom: 1rem; }
+.about-cards { display: flex; flex-direction: column; gap: 1rem; }
+.about-card { border: 1px solid var(--border); padding: 1.25rem 1.5rem; background: var(--card); border-left: 2px solid var(--accent); }
+.about-card-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; margin-bottom: 5px; }
+.about-card-value { font-size: 14px; font-weight: 700; }
+.about-card-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
 
-  /* ACHIEVEMENTS */
-  .achievements-section { background: var(--bg); }
-  .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .achievement-item { background: var(--bg); padding: 2rem 1.75rem; transition: background 0.2s; }
-  .achievement-item:hover { background: var(--bg3); }
-  .achievement-num { font-family: 'Space Mono', monospace; font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
-  .achievement-label { font-size: 14px; font-weight: 600; margin-bottom: 0.5rem; }
-  .achievement-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+/* ACHIEVEMENTS */
+.achievements-section { background: var(--bg); }
+.achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.achievement-item { background: var(--bg); padding: 2rem 1.75rem; transition: background 0.2s; }
+.achievement-item:hover { background: var(--bg3); }
+.achievement-num { font-family: 'Space Mono', monospace; font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+.achievement-label { font-size: 14px; font-weight: 600; margin-bottom: 0.5rem; }
+.achievement-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
-  /* SKILLS */
-  .skills-section { background: var(--bg2); }
-  .skills-categories { display: flex; flex-direction: column; gap: 2.5rem; }
-  .skill-category-title { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
-  .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .pill { font-family: 'Space Mono', monospace; font-size: 11px; padding: 6px 14px; border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.5px; transition: all 0.2s; }
-  .pill:hover { border-color: var(--accent); color: var(--accent); }
-  .pill.hot { border-color: rgba(0,212,170,0.3); color: var(--accent); background: rgba(0,212,170,0.05); }
+/* SKILLS */
+.skills-section { background: var(--bg2); }
+.skills-categories { display: flex; flex-direction: column; gap: 2.5rem; }
+.skill-category-title { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+.skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font-family: 'Space Mono', monospace; font-size: 11px; padding: 6px 14px; border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.5px; transition: all 0.2s; }
+.pill:hover { border-color: var(--accent); color: var(--accent); }
+.pill.hot { border-color: rgba(0,212,170,0.3); color: var(--accent); background: rgba(0,212,170,0.05); }
 
-  /* EXPERIENCE */
-  .experience-section { background: var(--bg); }
-  .exp-timeline { position: relative; padding-left: 2.5rem; }
-  .exp-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: var(--border); }
-  .exp-item { position: relative; margin-bottom: 4rem; }
-  .exp-item:last-child { margin-bottom: 0; }
-  .exp-dot { position: absolute; left: -2.9rem; top: 6px; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 4px rgba(0,212,170,0.12); }
-  .exp-date { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: 1.5px; }
-  .exp-role { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
-  .exp-company { font-size: 13px; color: var(--accent2); font-family: 'Space Mono', monospace; margin-bottom: 0.5rem; letter-spacing: 0.5px; }
-  .exp-promo { display: inline-block; font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent3); border: 1px solid rgba(247,162,106,0.3); padding: 2px 10px; margin-bottom: 1.25rem; letter-spacing: 1px; }
-  .exp-section-label { font-size: 13px; font-weight: 700; color: var(--text); margin: 1.5rem 0 0.75rem; padding-left: 0; }
-  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .exp-bullets li { display: flex; gap: 10px; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
-  .exp-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-family: 'Space Mono', monospace; margin-top: 1px; }
+/* EXPERIENCE */
+.experience-section { background: var(--bg); }
+.exp-timeline { position: relative; padding-left: 2.5rem; }
+.exp-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: var(--border); }
+.exp-item { position: relative; margin-bottom: 4rem; }
+.exp-item:last-child { margin-bottom: 0; }
+.exp-dot { position: absolute; left: -2.9rem; top: 6px; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 4px rgba(0,212,170,0.12); }
+.exp-date { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: 1.5px; }
+.exp-role { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
+.exp-company { font-size: 13px; color: var(--accent2); font-family: 'Space Mono', monospace; margin-bottom: 0.5rem; letter-spacing: 0.5px; }
+.exp-promo { display: inline-block; font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent3); border: 1px solid rgba(247,162,106,0.3); padding: 2px 10px; margin-bottom: 1.25rem; letter-spacing: 1px; }
+.exp-section-label { font-size: 13px; font-weight: 700; color: var(--text); margin: 1.5rem 0 0.75rem; padding-left: 0; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.exp-bullets li { display: flex; gap: 10px; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
+.exp-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-family: 'Space Mono', monospace; margin-top: 1px; }
 
-  /* UPGRADE — FLAGSHIP */
-  .upgrade-section { background: var(--bg2); }
-  .upgrade-card { border: 1px solid rgba(0,212,170,0.3); background: rgba(0,212,170,0.03); padding: 3rem; position: relative; overflow: hidden; }
-  .upgrade-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); }
-  .upgrade-badge { display: inline-block; font-family: 'Space Mono', monospace; font-size: 10px; background: rgba(0,212,170,0.1); color: var(--accent); border: 1px solid rgba(0,212,170,0.3); padding: 4px 12px; letter-spacing: 1.5px; margin-bottom: 1.5rem; }
-  .upgrade-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.75rem; }
-  .upgrade-version { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent); margin-bottom: 1.5rem; }
-  .upgrade-desc { color: var(--muted); font-size: 15px; line-height: 1.85; margin-bottom: 2rem; max-width: 820px; }
-  .upgrade-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 2rem; }
-  .upgrade-metric { background: var(--bg2); padding: 1.5rem 1.25rem; }
-  .upgrade-metric-num { font-family: 'Space Mono', monospace; font-size: 1.8rem; font-weight: 700; color: var(--accent); }
-  .upgrade-metric-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .upgrade-bullets { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 2rem; }
-  .upgrade-bullets li { display: flex; gap: 10px; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
-  .upgrade-bullets li::before { content: '✦'; color: var(--accent); flex-shrink: 0; font-size: 10px; margin-top: 3px; }
-  .upgrade-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2rem; }
-  .tag { font-family: 'Space Mono', monospace; font-size: 10px; padding: 4px 10px; border: 1px solid rgba(0,212,170,0.22); color: var(--accent); letter-spacing: 1px; }
+/* UPGRADE — FLAGSHIP */
+.upgrade-section { background: var(--bg2); }
+.upgrade-card { border: 1px solid rgba(0,212,170,0.3); background: rgba(0,212,170,0.03); padding: 3rem; position: relative; overflow: hidden; }
+.upgrade-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); }
+.upgrade-badge { display: inline-block; font-family: 'Space Mono', monospace; font-size: 10px; background: rgba(0,212,170,0.1); color: var(--accent); border: 1px solid rgba(0,212,170,0.3); padding: 4px 12px; letter-spacing: 1.5px; margin-bottom: 1.5rem; }
+.upgrade-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.75rem; }
+.upgrade-version { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent); margin-bottom: 1.5rem; }
+.upgrade-desc { color: var(--muted); font-size: 15px; line-height: 1.85; margin-bottom: 2rem; max-width: 820px; }
+.upgrade-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 2rem; }
+.upgrade-metric { background: var(--bg2); padding: 1.5rem 1.25rem; }
+.upgrade-metric-num { font-family: 'Space Mono', monospace; font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+.upgrade-metric-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.upgrade-bullets { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 2rem; }
+.upgrade-bullets li { display: flex; gap: 10px; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
+.upgrade-bullets li::before { content: '✦'; color: var(--accent); flex-shrink: 0; font-size: 10px; margin-top: 3px; }
+.upgrade-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2rem; }
+.tag { font-family: 'Space Mono', monospace; font-size: 10px; padding: 4px 10px; border: 1px solid rgba(0,212,170,0.22); color: var(--accent); letter-spacing: 1px; }
 
-  /* PROJECTS */
-  .projects-section { background: var(--bg); }
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
-  .project-card { border: 1px solid var(--border); background: var(--card); padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
-  .project-card:hover { border-color: rgba(0,212,170,0.4); transform: translateY(-4px); }
-  .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-  .project-num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  .project-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
-  .project-desc { color: var(--muted); font-size: 13.5px; line-height: 1.75; margin-bottom: 1.5rem; }
-  .project-link { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent2); text-decoration: none; display: block; margin-bottom: 1.25rem; word-break: break-all; }
-  .project-link:hover { color: var(--accent); }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+/* PROJECTS */
+.projects-section { background: var(--bg); }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+.project-card { border: 1px solid var(--border); background: var(--card); padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+.project-card:hover { border-color: rgba(0,212,170,0.4); transform: translateY(-4px); }
+.project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.project-num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+.project-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+.project-desc { color: var(--muted); font-size: 13.5px; line-height: 1.75; margin-bottom: 1.5rem; }
+.project-link { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent2); text-decoration: none; display: block; margin-bottom: 1.25rem; word-break: break-all; }
+.project-link:hover { color: var(--accent); }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.project-card.featured { border-color: rgba(0,212,170,0.35); background: rgba(0,212,170,0.04); }
+.featured-badge { display: inline-block; font-family: 'Space Mono', monospace; font-size: 9px; background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid rgba(0,212,170,0.3); padding: 3px 10px; letter-spacing: 1.5px; margin-bottom: 0.9rem; }
 
-  /* CONTACT */
-  .contact-section { background: var(--bg2); }
-  .contact-inner { max-width: 640px; margin: 0 auto; text-align: center; }
-  .contact-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2.5rem 0; }
-  .contact-link-item { background: var(--bg2); padding: 1.75rem 1.5rem; text-decoration: none; transition: background 0.2s; display: block; }
-  .contact-link-item:hover { background: var(--bg3); }
-  .contact-link-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; margin-bottom: 6px; }
-  .contact-link-value { font-size: 13px; color: var(--text); font-weight: 600; word-break: break-all; }
-  .contact-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #0a0a0f; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; padding: 14px 30px; text-decoration: none; text-transform: uppercase; transition: all 0.2s; }
-  .contact-cta:hover { background: #00ffcc; transform: translateY(-2px); }
+/* CONTACT */
+.contact-section { background: var(--bg2); }
+.contact-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+.contact-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2.5rem 0; }
+.contact-link-item { background: var(--bg2); padding: 1.75rem 1.5rem; text-decoration: none; transition: background 0.2s; display: block; }
+.contact-link-item:hover { background: var(--bg3); }
+.contact-link-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; margin-bottom: 6px; }
+.contact-link-value { font-size: 13px; color: var(--text); font-weight: 600; word-break: break-all; }
+.contact-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #0a0a0f; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; padding: 14px 30px; text-decoration: none; text-transform: uppercase; transition: all 0.2s; }
+.contact-cta:hover { background: #00ffcc; transform: translateY(-2px); }
 
-  /* FOOTER */
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); flex-wrap: wrap; gap: 1rem; }
+/* FOOTER */
+footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); flex-wrap: wrap; gap: 1rem; }
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .upgrade-bullets { grid-template-columns: 1fr; }
-    .contact-links { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 0.75rem; }
-    .nav-links a { font-size: 10px; }
-    section { padding: 5rem 1.5rem 3rem; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
-    .hero-stats { gap: 1.5rem; }
-    .upgrade-card { padding: 2rem 1.5rem; }
-  }
+/* RESPONSIVE */
+@media (max-width: 900px) {
+.about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+.upgrade-bullets { grid-template-columns: 1fr; }
+.contact-links { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+nav { padding: 1rem 1.5rem; }
+.nav-links { gap: 0.75rem; }
+.nav-links a { font-size: 10px; }
+section { padding: 5rem 1.5rem 3rem; }
+footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+.hero-stats { gap: 1.5rem; }
+.upgrade-card { padding: 2rem 1.5rem; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <span class="nav-logo">AAKASH VEMULA</span>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#achievements">Impact</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#upgrade">ORMB Upgrade</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
+<span class="nav-logo">AAKASH VEMULA</span>
+<div class="nav-links">
+<a href="#about">About</a>
+<a href="#achievements">Impact</a>
+<a href="#skills">Skills</a>
+<a href="#experience">Experience</a>
+<a href="#upgrade">ORMB Upgrade</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-content">
-    <div class="hero-tag">DevOps Engineer II · Open to Opportunities</div>
-    <h1>Aakash<br><span class="line2">Vemula.</span></h1>
-    <div class="hero-role">DevOps Engineer II &nbsp;·&nbsp; ORMB Administrator &nbsp;·&nbsp; Cloud & Infrastructure</div>
-    <p class="hero-sub">
-      3 years of hands-on experience designing, automating, and maintaining scalable enterprise infrastructure.
-      Led end-to-end ORMB platform upgrade (v2.9 → v5.1) across 5 environments — built from scratch.
-      Expert in Kubernetes, Docker, Jenkins CI/CD, Terraform, Ansible, and AWS.
-    </p>
-    <div class="hero-cta">
-      <a href="#upgrade" class="btn-primary">Flagship Project ↓</a>
-      <a href="#contact" class="btn-ghost">Contact Me</a>
-    </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">3+</div>
-        <div class="stat-label">Years Experience</div>
-      </div>
-      <div>
-        <div class="stat-num">40%</div>
-        <div class="stat-label">Downtime Reduced</div>
-      </div>
-      <div>
-        <div class="stat-num">10</div>
-        <div class="stat-label">Environments Upgraded</div>
-      </div>
-      <div>
-        <div class="stat-num">550+</div>
-        <div class="stat-label">Users Managed</div>
-      </div>
-    </div>
-  </div>
+<div class="hero-grid"></div>
+<div class="hero-glow"></div>
+<div class="hero-glow2"></div>
+<div class="hero-content">
+<div class="hero-tag">DevOps Engineer II · Open to Opportunities</div>
+<h1>Aakash<br><span class="line2">Vemula.</span></h1>
+<div class="hero-role">DevOps Engineer II &nbsp;·&nbsp; DevSecOps &nbsp;·&nbsp; Kubernetes (AKS) &nbsp;·&nbsp; Cloud &amp; Infrastructure</div>
+<p class="hero-sub">
+3 years of hands-on experience designing, automating, and securing scalable enterprise infrastructure.
+Architected an 11-stage DevSecOps pipeline with 8 security gates. Led end-to-end ORMB platform
+upgrade (v2.9 → v5.1) across 5 environments — built from scratch.
+Expert in Kubernetes (AKS), Docker, Jenkins CI/CD, Terraform, ArgoCD, AWS, and Azure.
+</p>
+<div class="hero-cta">
+<a href="#upgrade" class="btn-primary">Flagship Project ↓</a>
+<a href="#contact" class="btn-ghost">Contact Me</a>
+</div>
+<div class="hero-stats">
+<div>
+<div class="stat-num">3+</div>
+<div class="stat-label">Years Experience</div>
+</div>
+<div>
+<div class="stat-num">40%</div>
+<div class="stat-label">Downtime Reduced</div>
+</div>
+<div>
+<div class="stat-num">8</div>
+<div class="stat-label">Security Gates Built</div>
+</div>
+<div>
+<div class="stat-num">3×</div>
+<div class="stat-label">IMPACT Awards</div>
+</div>
+<div>
+<div class="stat-num">550+</div>
+<div class="stat-label">Users Managed</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="about-section">
-  <div class="section-tag">// about me</div>
-  <div class="about-grid">
-    <div class="about-left">
-      <h2 class="section-title">Who I Am</h2>
-      <div class="about-body">
-        <p>
-          I'm Aakash Vemula, a DevOps Engineer II based in Hyderabad, India, currently at
-          Carelon Global Solutions (Anthem / Elevance Health). I started my career simultaneously
-          as a DevOps Engineer and ORMB Administrator — bridging enterprise billing systems with
-          modern cloud-native infrastructure from day one.
-        </p>
-        <p>
-          Over 3 years, I earned a promotion to DevOps Engineer II, where I lead infrastructure
-          automation, CI/CD pipeline design, Kubernetes orchestration, and large-scale platform upgrades.
-          My biggest achievement: leading the full end-to-end ORMB upgrade from v2.9 to v5.1 across
-          10 environments — built entirely from scratch with zero data loss.
-        </p>
-        <p>
-          My philosophy: eliminate toil through automation. From auto-generating release notes to
-          building disk cleanup systems across 40+ servers — I turn repetitive manual work into
-          reliable, automated pipelines that protect production.
-        </p>
-      </div>
-    </div>
-    <div class="about-cards">
-      <div class="about-card">
-        <div class="about-card-label">// current role</div>
-        <div class="about-card-value">DevOps Engineer II</div>
-        <div class="about-card-sub">Carelon Global Solutions (Anthem / Elevance Health) · Aug 2023 – Present</div>
-      </div>
-      <div class="about-card">
-        <div class="about-card-label">// concurrent role</div>
-        <div class="about-card-value">ORMB Administrator</div>
-        <div class="about-card-sub">Oracle Revenue Management &amp; Billing v5.1 · 550+ Users</div>
-      </div>
-      <div class="about-card">
-        <div class="about-card-label">// location</div>
-        <div class="about-card-value">Hyderabad, Telangana, India</div>
-      </div>
-      <div class="about-card">
-        <div class="about-card-label">// education</div>
-        <div class="about-card-value">B.Tech — Electronics &amp; Communication Engineering</div>
-        <div class="about-card-sub">Sasi Institute of Technology &amp; Engineering · CGPA 8.0/10 · 2019–2023</div>
-      </div>
-      <div class="about-card">
-        <div class="about-card-label">// certification in progress</div>
-        <div class="about-card-value">AWS Certified Cloud Practitioner</div>
-        <div class="about-card-sub">Target: Q2 2026</div>
-      </div>
-    </div>
-  </div>
+<div class="section-tag">// about me</div>
+<div class="about-grid">
+<div class="about-left">
+<h2 class="section-title">Who I Am</h2>
+<div class="about-body">
+<p>
+I'm Aakash Vemula, a DevOps Engineer II based in Hyderabad, India, currently at
+Carelon Global Solutions (Anthem / Elevance Health). I started my career simultaneously
+as a DevOps Engineer and ORMB Administrator — bridging enterprise billing systems with
+modern cloud-native infrastructure from day one.
+</p>
+<p>
+Over 3 years, I earned a promotion to DevOps Engineer II, where I lead infrastructure
+automation, CI/CD pipeline design, Kubernetes (AKS) orchestration with GitOps (ArgoCD),
+DevSecOps implementation, and large-scale platform upgrades. My flagship deliveries:
+the full end-to-end ORMB upgrade from v2.9 to v5.1 across 5 environments with zero data
+loss, and CloudGuard-DevSecOps — an 11-stage secure CI/CD pipeline with 8 automated
+security gates. Recognised with 3× IMPACT Awards (2025–2026).
+</p>
+<p>
+My philosophy: eliminate toil through automation, and shift security left. From
+auto-generating release notes to blocking CRITICAL CVEs before they ever reach
+production — I turn repetitive manual work into reliable, automated pipelines
+that protect production.
+</p>
+</div>
+</div>
+<div class="about-cards">
+<div class="about-card">
+<div class="about-card-label">// current role</div>
+<div class="about-card-value">DevOps Engineer II</div>
+<div class="about-card-sub">Carelon Global Solutions (Anthem / Elevance Health) · Aug 2023 – Present</div>
+</div>
+<div class="about-card">
+<div class="about-card-label">// concurrent role</div>
+<div class="about-card-value">ORMB Administrator</div>
+<div class="about-card-sub">Oracle Revenue Management &amp; Billing v5.1 · 550+ Users</div>
+</div>
+<div class="about-card">
+<div class="about-card-label">// recognition</div>
+<div class="about-card-value">3× IMPACT Awards (2025–2026)</div>
+<div class="about-card-sub">Agility ×2 · Community ×1 · Elevance Health / Carelon Global Solutions</div>
+</div>
+<div class="about-card">
+<div class="about-card-label">// location</div>
+<div class="about-card-value">Hyderabad, Telangana, India</div>
+</div>
+<div class="about-card">
+<div class="about-card-label">// education</div>
+<div class="about-card-value">B.Tech — Electronics &amp; Communication Engineering</div>
+<div class="about-card-sub">Sasi Institute of Technology &amp; Engineering · CGPA 8.0/10 · 2019–2023</div>
+</div>
+<div class="about-card">
+<div class="about-card-label">// certifications in progress</div>
+<div class="about-card-value">AZ-104 Azure Administrator · AZ-400 Azure DevOps Engineer Expert</div>
+<div class="about-card-sub">Microsoft Certified — In Progress · 2026</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- KEY ACHIEVEMENTS -->
 <section id="achievements" class="achievements-section">
-  <div class="section-tag">// measurable impact</div>
-  <h2 class="section-title">Key Achievements</h2>
-  <p class="section-sub">Real numbers. Real impact. Delivered through automation, engineering, and ownership.</p>
-  <div class="achievements-grid">
-    <div class="achievement-item">
-      <div class="achievement-num">40%</div>
-      <div class="achievement-label">Downtime Reduction</div>
-      <div class="achievement-desc">Via Jenkins automated alerting &amp; health monitoring across production systems.</div>
-    </div>
-    <div class="achievement-item">
-      <div class="achievement-num">50%</div>
-      <div class="achievement-label">Fewer Deployment Failures</div>
-      <div class="achievement-desc">Fault-tolerant SQL execution pipeline with error artifact capture and auto-continue.</div>
-    </div>
-    <div class="achievement-item">
-      <div class="achievement-num">70%</div>
-      <div class="achievement-label">Less Manual Monitoring</div>
-      <div class="achievement-desc">Automated disk cleanup &amp; alert system running every 4 hours across 40+ Linux/AIX servers.</div>
-    </div>
-    <div class="achievement-item">
-      <div class="achievement-num">60%</div>
-      <div class="achievement-label">Faster Environment Setup</div>
-      <div class="achievement-desc">ORMB v5.1 — full infrastructure provisioned from scratch to production-ready.</div>
-    </div>
-    <div class="achievement-item">
-      <div class="achievement-num">0</div>
-      <div class="achievement-label">Data Loss on Migration</div>
-      <div class="achievement-desc">Zero data loss migrating 3 enterprise integrations (EFX, BO, Infogix) during ORMB upgrade.</div>
-    </div>
-    <div class="achievement-item">
-      <div class="achievement-num">100%</div>
-      <div class="achievement-label">Manual Docs Eliminated</div>
-      <div class="achievement-desc">Auto-generated Jenkins release notes pipeline — zero manual release documentation effort.</div>
-    </div>
-  </div>
+<div class="section-tag">// measurable impact</div>
+<h2 class="section-title">Key Achievements</h2>
+<p class="section-sub">Real numbers. Real impact. Delivered through automation, engineering, and ownership.</p>
+<div class="achievements-grid">
+<div class="achievement-item">
+<div class="achievement-num">3×</div>
+<div class="achievement-label">IMPACT Awards (2025–2026)</div>
+<div class="achievement-desc">Agility ×2 &amp; Community ×1 — awarded by Elevance Health for end-to-end delivery ownership and cross-functional leadership.</div>
+</div>
+<div class="achievement-item">
+<div class="achievement-num">8</div>
+<div class="achievement-label">Automated Security Gates</div>
+<div class="achievement-desc">CloudGuard-DevSecOps — 11-stage Jenkins pipeline blocking HIGH/CRITICAL CVEs and leaked secrets before production.</div>
+</div>
+<div class="achievement-item">
+<div class="achievement-num">40%</div>
+<div class="achievement-label">Downtime Reduction</div>
+<div class="achievement-desc">Via Jenkins automated alerting &amp; health monitoring across production systems.</div>
+</div>
+<div class="achievement-item">
+<div class="achievement-num">50%</div>
+<div class="achievement-label">Fewer Deployment Failures</div>
+<div class="achievement-desc">Fault-tolerant SQL execution pipeline with error artifact capture and auto-continue.</div>
+</div>
+<div class="achievement-item">
+<div class="achievement-num">70%</div>
+<div class="achievement-label">Faster Provisioning</div>
+<div class="achievement-desc">Modular Terraform (S3 remote state + DynamoDB locking) replicated across dev/staging/prod workspaces.</div>
+</div>
+<div class="achievement-item">
+<div class="achievement-num">60%</div>
+<div class="achievement-label">Faster Environment Setup</div>
+<div class="achievement-desc">ORMB v5.1 — full infrastructure provisioned from scratch to production-ready.</div>
+</div>
+<div class="achievement-item">
+<div class="achievement-num">0</div>
+<div class="achievement-label">Data Loss on Migration</div>
+<div class="achievement-desc">Zero data loss migrating 3 enterprise integrations (EFX, BO, Infogix) during ORMB upgrade.</div>
+</div>
+<div class="achievement-item">
+<div class="achievement-num">100%</div>
+<div class="achievement-label">Manual Docs Eliminated</div>
+<div class="achievement-desc">Auto-generated Jenkins release notes pipeline — zero manual release documentation effort.</div>
+</div>
+</div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills" class="skills-section">
-  <div class="section-tag">// expertise</div>
-  <h2 class="section-title">Technical Skills</h2>
-  <p class="section-sub">Full-stack DevOps capabilities across cloud, containers, automation, IaC, and enterprise systems.</p>
-  <div class="skills-categories">
-    <div>
-      <div class="skill-category-title">Cloud Platforms</div>
-      <div class="skill-pills">
-        <span class="pill hot">AWS EC2</span><span class="pill hot">AWS S3</span><span class="pill hot">AWS IAM</span>
-        <span class="pill hot">AWS VPC</span><span class="pill hot">AWS CloudWatch</span><span class="pill hot">AWS ECR</span>
-        <span class="pill">Azure</span><span class="pill">GCP</span>
-      </div>
-    </div>
-    <div>
-      <div class="skill-category-title">Containers &amp; Orchestration</div>
-      <div class="skill-pills">
-        <span class="pill hot">Docker</span><span class="pill hot">Kubernetes</span><span class="pill hot">Helm</span>
-        <span class="pill hot">Docker Compose</span><span class="pill">Deployments</span><span class="pill">ReplicaSets</span>
-        <span class="pill">Services &amp; Ingress</span><span class="pill">HPA</span><span class="pill">ConfigMaps</span>
-        <span class="pill">Secrets</span><span class="pill">Microservices</span>
-      </div>
-    </div>
-    <div>
-      <div class="skill-category-title">CI/CD &amp; Automation</div>
-      <div class="skill-pills">
-        <span class="pill hot">Jenkins Pipelines</span><span class="pill hot">GitLab CI/CD</span>
-        <span class="pill">GitHub Actions</span><span class="pill">ArgoCD</span>
-        <span class="pill">Shared Libraries</span><span class="pill">Groovy Scripting</span>
-      </div>
-    </div>
-    <div>
-      <div class="skill-category-title">Infrastructure as Code</div>
-      <div class="skill-pills">
-        <span class="pill hot">Terraform</span><span class="pill hot">Ansible</span>
-        <span class="pill">Terraform Modules</span><span class="pill">Workspaces</span>
-        <span class="pill">Remote State — S3 + DynamoDB</span><span class="pill">Ansible Playbooks</span>
-        <span class="pill">Roles &amp; Inventory</span>
-      </div>
-    </div>
-    <div>
-      <div class="skill-category-title">Monitoring &amp; Alerting</div>
-      <div class="skill-pills">
-        <span class="pill hot">AWS CloudWatch</span><span class="pill hot">Prometheus</span>
-        <span class="pill hot">Grafana</span><span class="pill">Log Aggregation</span><span class="pill">Health Alerting</span>
-      </div>
-    </div>
-    <div>
-      <div class="skill-category-title">Scripting &amp; Languages</div>
-      <div class="skill-pills">
-        <span class="pill hot">Bash / Shell Scripting</span><span class="pill">Python</span>
-        <span class="pill">YAML</span><span class="pill">Groovy</span><span class="pill">Java</span>
-      </div>
-    </div>
-    <div>
-      <div class="skill-category-title">Networking &amp; Web</div>
-      <div class="skill-pills">
-        <span class="pill hot">Nginx (Load Balancing · Reverse Proxy)</span>
-        <span class="pill">VPC &amp; Subnets</span><span class="pill">Security Groups</span><span class="pill">DNS</span>
-      </div>
-    </div>
-    <div>
-      <div class="skill-category-title">Security &amp; DevSecOps</div>
-      <div class="skill-pills">
-        <span class="pill">IAM Roles &amp; Policies</span><span class="pill">SSL/TLS Certificate Management</span>
-        <span class="pill">Kubernetes Secrets</span><span class="pill">Vulnerability Assessment</span>
-        <span class="pill">Password Policy Management</span>
-      </div>
-    </div>
-    <div>
-      <div class="skill-category-title">OS &amp; Version Control</div>
-      <div class="skill-pills">
-        <span class="pill hot">Linux (Ubuntu · RHEL)</span><span class="pill">AIX</span><span class="pill">Windows Server</span>
-        <span class="pill hot">Git</span><span class="pill">GitHub</span><span class="pill">GitLab</span>
-      </div>
-    </div>
-    <div>
-      <div class="skill-category-title">Enterprise Application</div>
-      <div class="skill-pills">
-        <span class="pill hot">ORMB v5.1 (Oracle Revenue Management &amp; Billing)</span>
-        <span class="pill">WebLogic</span><span class="pill">Access Control</span>
-        <span class="pill">Billing Configuration</span><span class="pill">SQL</span>
-      </div>
-    </div>
-  </div>
+<div class="section-tag">// expertise</div>
+<h2 class="section-title">Technical Skills</h2>
+<p class="section-sub">Full-stack DevOps capabilities across cloud, containers, DevSecOps, IaC, observability, and enterprise systems.</p>
+<div class="skills-categories">
+<div>
+<div class="skill-category-title">Cloud Platforms</div>
+<div class="skill-pills">
+<span class="pill hot">AWS EC2</span><span class="pill hot">AWS S3</span><span class="pill hot">AWS IAM</span>
+<span class="pill hot">AWS VPC</span><span class="pill hot">AWS CloudWatch</span><span class="pill">AWS ECR</span><span class="pill">AWS EKS</span>
+<span class="pill hot">Azure AKS</span><span class="pill hot">Azure DevOps</span><span class="pill">Azure VNet · NSG</span>
+<span class="pill">Azure Monitor · Log Analytics</span><span class="pill">GCP</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">Containers &amp; Orchestration</div>
+<div class="skill-pills">
+<span class="pill hot">Docker</span><span class="pill hot">Kubernetes (AKS)</span><span class="pill hot">Helm</span>
+<span class="pill">Docker Compose</span><span class="pill">Deployments</span><span class="pill">ReplicaSets</span>
+<span class="pill">Services &amp; Ingress</span><span class="pill">HPA</span><span class="pill">ConfigMaps</span>
+<span class="pill">Secrets</span><span class="pill">RBAC · NetworkPolicy</span><span class="pill">PodSecurityStandards</span>
+<span class="pill">Microservices</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">CI/CD, GitOps &amp; Automation</div>
+<div class="skill-pills">
+<span class="pill hot">Jenkins Pipelines</span><span class="pill hot">ArgoCD</span><span class="pill hot">GitOps</span>
+<span class="pill hot">GitLab CI/CD</span><span class="pill">Azure DevOps Pipelines (YAML)</span>
+<span class="pill">GitHub Actions</span><span class="pill">Shared Libraries</span><span class="pill">Groovy Scripting</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">Infrastructure as Code</div>
+<div class="skill-pills">
+<span class="pill hot">Terraform</span><span class="pill hot">Ansible</span>
+<span class="pill">Terraform Modules</span><span class="pill">Workspaces</span>
+<span class="pill">Remote State — S3 + DynamoDB</span><span class="pill">Ansible Playbooks</span>
+<span class="pill">Roles &amp; Inventory</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">DevSecOps &amp; Security</div>
+<div class="skill-pills">
+<span class="pill hot">SAST — Semgrep</span><span class="pill hot">Secrets Detection — Gitleaks</span>
+<span class="pill hot">Container Scanning — Trivy · Snyk</span><span class="pill hot">IaC Security — Checkov · TFSec</span>
+<span class="pill hot">DAST — OWASP ZAP</span><span class="pill">SCA — pip-audit</span>
+<span class="pill">Shift-Left Security</span><span class="pill">Pass/Fail Gates</span><span class="pill">CVSS Scoring</span>
+<span class="pill">IAM Roles &amp; Policies</span><span class="pill">SSL/TLS Certificate Management</span>
+<span class="pill">Kubernetes Security (6 Layers)</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">Monitoring &amp; Observability</div>
+<div class="skill-pills">
+<span class="pill hot">Datadog (APM · Infra · Logs)</span><span class="pill hot">Prometheus</span>
+<span class="pill hot">Grafana</span><span class="pill">AWS CloudWatch</span><span class="pill">Azure Monitor</span>
+<span class="pill">SLO Tracking</span><span class="pill">Dashboards &amp; Alerting</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">Scripting &amp; Languages</div>
+<div class="skill-pills">
+<span class="pill hot">Bash / Shell Scripting</span><span class="pill hot">Python (Flask)</span>
+<span class="pill">YAML</span><span class="pill">Groovy</span><span class="pill">Java</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">AI-Powered DevOps</div>
+<div class="skill-pills">
+<span class="pill hot">Ollama (llama3)</span><span class="pill hot">Local LLM Integration</span>
+<span class="pill">Flask APIs</span><span class="pill">Gradio</span><span class="pill">Jenkins + AI Automation</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">Networking &amp; Web</div>
+<div class="skill-pills">
+<span class="pill hot">Nginx (Load Balancing · Reverse Proxy)</span>
+<span class="pill">VPC &amp; Subnets</span><span class="pill">Security Groups · NSG</span><span class="pill">DNS</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">OS &amp; Version Control</div>
+<div class="skill-pills">
+<span class="pill hot">Linux (Ubuntu · RHEL)</span><span class="pill">AIX</span><span class="pill">Windows Server</span>
+<span class="pill hot">Git</span><span class="pill">GitHub</span><span class="pill">GitLab</span>
+</div>
+</div>
+<div>
+<div class="skill-category-title">Enterprise Application</div>
+<div class="skill-pills">
+<span class="pill hot">ORMB v5.1 (Oracle Revenue Management &amp; Billing)</span>
+<span class="pill">WebLogic</span><span class="pill">Access Control</span>
+<span class="pill">Billing Configuration</span><span class="pill">SQL</span>
+</div>
+</div>
+</div>
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience" class="experience-section">
-  <div class="section-tag">// career journey</div>
-  <h2 class="section-title">Experience</h2>
-  <p class="section-sub">Started as DevOps Engineer + ORMB Admin on day one. Promoted to DevOps Engineer II through consistent delivery.</p>
+<div class="section-tag">// career journey</div>
+<h2 class="section-title">Experience</h2>
+<p class="section-sub">Started as DevOps Engineer + ORMB Admin on day one. Promoted to DevOps Engineer II through consistent delivery.</p>
+<div class="exp-timeline">
+<div class="exp-item">
+<div class="exp-dot"></div>
+<div class="exp-date">AUG 2023 — PRESENT &nbsp;·&nbsp; HYDERABAD, INDIA</div>
+<div class="exp-role">DevOps Engineer II</div>
+<div class="exp-company">Carelon Global Solutions (Anthem / Elevance Health)</div>
+<div class="exp-promo">↑ Started as DevOps Engineer + ORMB Admin simultaneously → Promoted to DevOps Engineer II</div>
 
-  <div class="exp-timeline">
-    <div class="exp-item">
-      <div class="exp-dot"></div>
-      <div class="exp-date">AUG 2023 — PRESENT &nbsp;·&nbsp; HYDERABAD, INDIA</div>
-      <div class="exp-role">DevOps Engineer II</div>
-      <div class="exp-company">Carelon Global Solutions (Anthem / Elevance Health)</div>
-      <div class="exp-promo">↑ Started as DevOps Engineer + ORMB Admin simultaneously → Promoted to DevOps Engineer II</div>
+<div class="exp-section-label">Kubernetes (AKS), GitOps &amp; Container Orchestration</div>
+<ul class="exp-bullets">
+<li>Orchestrated containerised microservices on Kubernetes (AKS) — configured Deployments, ReplicaSets, Services, Ingress controllers, HPA, and resource quotas for production workloads.</li>
+<li>Established GitOps workflows using ArgoCD for declarative, version-controlled Kubernetes releases; authored Helm charts spanning dev, staging, and production with environment-specific value overrides.</li>
+<li>Hardened Kubernetes clusters with RBAC, NetworkPolicy (default-deny), PodSecurityStandards, and encrypted Secrets management — enforcing defence-in-depth across 6 security layers.</li>
+<li>Integrated Kubernetes deployments into Jenkins CI/CD pipelines using kubectl and Helm for automated rollouts and rollbacks.</li>
+</ul>
 
-      <div class="exp-section-label">Kubernetes &amp; Container Orchestration</div>
-      <ul class="exp-bullets">
-        <li>Deployed containerized applications on Kubernetes clusters — configured Deployments, ReplicaSets, Services, Ingress controllers, and Horizontal Pod Autoscalers (HPA).</li>
-        <li>Created and maintained Helm charts for standardized, reusable deployments across dev, staging, and production environments.</li>
-        <li>Integrated Kubernetes deployments into Jenkins CI/CD pipelines using kubectl and Helm for automated rollouts and rollbacks.</li>
-        <li>Managed Kubernetes Secrets and ConfigMaps for secure, environment-specific configuration handling.</li>
-      </ul>
+<div class="exp-section-label">Infrastructure as Code — Terraform &amp; Ansible</div>
+<ul class="exp-bullets">
+<li>Provisioned full AWS environments (EC2, VPC, S3, IAM) using modular Terraform with S3 remote state and DynamoDB locking — replicated across dev/staging/prod workspaces, reducing provisioning time by 70%.</li>
+<li>Embedded Checkov IaC security scanning into pipelines — auto-blocking misconfigurations (public S3 buckets, open SSH, unencrypted EBS) before terraform apply.</li>
+<li>Integrated Terraform into Jenkins CI/CD pipelines with plan/apply approval gates for automated infrastructure provisioning.</li>
+<li>Authored Ansible playbooks and roles for repeatable provisioning across 40+ Linux/AIX servers, cutting environment replication time by 70%.</li>
+</ul>
 
-      <div class="exp-section-label">Infrastructure as Code — Terraform &amp; Ansible</div>
-      <ul class="exp-bullets">
-        <li>Provisioned AWS infrastructure using Terraform — EC2, VPCs, Security Groups, S3, IAM roles across multiple environments.</li>
-        <li>Structured Terraform code using modules and workspaces; managed remote state with S3 backend and DynamoDB locking.</li>
-        <li>Integrated Terraform into Jenkins CI/CD pipelines with plan/apply approval gates for automated infrastructure provisioning.</li>
-        <li>Authored Ansible playbooks and roles for automated server provisioning, package installation, and configuration management across Linux environments.</li>
-      </ul>
+<div class="exp-section-label">DevSecOps &amp; Observability</div>
+<ul class="exp-bullets">
+<li>Embedded Shift-Left Security — SAST (Semgrep), SCA (pip-audit), Secrets scanning (Gitleaks), and container vulnerability scanning (Trivy) — into CI/CD pipelines, enforcing compliance at every commit.</li>
+<li>Configured Datadog APM, Infrastructure Monitoring, and Log Management for end-to-end visibility across microservices and Kubernetes workloads; built custom dashboards and SLO tracking for release health.</li>
+</ul>
 
-      <div class="exp-section-label">Automation &amp; Innovations</div>
-      <ul class="exp-bullets">
-        <li>Release Notes Automation — Built Jenkins pipeline to auto-generate release notes from scratch, eliminating 100% of manual documentation effort.</li>
-        <li>Disk Monitoring &amp; Auto-Cleanup — Jenkins system across 40+ AIX/Linux servers running every 4 hours; alerts at 80%, auto-clears logs older than 3 weeks — prevented multiple production outages.</li>
-        <li>SQL Execution Pipeline — Fault-tolerant Jenkins pipeline for executing multiple SQL scripts; continues on failure, captures error artifacts — reduced deployment failures by ~50%.</li>
-        <li>Environment Health Checks — Automated bi-hourly checks across Dev, QA, Staging, and Production — significantly reduced incident response time.</li>
-      </ul>
+<div class="exp-section-label">Automation &amp; Innovations</div>
+<ul class="exp-bullets">
+<li>Release Notes Automation — Built Jenkins pipeline to auto-generate release notes from scratch, eliminating 100% of manual documentation effort.</li>
+<li>Disk Monitoring &amp; Auto-Cleanup — Jenkins system across 40+ AIX/Linux servers running every 4 hours; alerts at 80%, auto-clears logs older than 3 weeks — prevented multiple production outages.</li>
+<li>SQL Execution Pipeline — Fault-tolerant Jenkins pipeline for executing multiple SQL scripts; continues on failure, captures error artifacts — reduced deployment failures by ~50%.</li>
+<li>Environment Health Checks — Automated bi-hourly checks across Dev, QA, Staging, and Production — significantly reduced incident response time.</li>
+</ul>
 
-      <div class="exp-section-label">ORMB Administration (Concurrent from Day One)</div>
-      <ul class="exp-bullets">
-        <li>Managed access control, certificate renewals, password policies, and Service ID resets for 550+ users.</li>
-        <li>Implemented Nginx-based load balancing on Linux as a cost-effective alternative to F5/AIX — significantly reducing infrastructure costs.</li>
-        <li>Led proactive application health monitoring using Jenkins across distributed systems — reduced downtime by ~40%.</li>
-      </ul>
-    </div>
-  </div>
+<div class="exp-section-label">ORMB Administration (Concurrent from Day One)</div>
+<ul class="exp-bullets">
+<li>Managed access control, certificate renewals, password policies, and Service ID resets for 550+ users.</li>
+<li>Implemented Nginx-based load balancing on Linux as a cost-effective alternative to F5/AIX — significantly reducing infrastructure costs.</li>
+<li>Led proactive application health monitoring using Jenkins across distributed systems — reduced downtime by ~40%.</li>
+</ul>
+</div>
+</div>
 </section>
 
 <!-- ORMB UPGRADE — FLAGSHIP PROJECT -->
 <section id="upgrade" class="upgrade-section">
-  <div class="section-tag">// flagship project</div>
-  <h2 class="section-title">Signature Work</h2>
-  <p class="section-sub">The most complex, high-stakes project of my career — owned end-to-end.</p>
-
-  <div class="upgrade-card">
-    <div class="upgrade-badge">⚡ ENTERPRISE PLATFORM UPGRADE · LEAD ENGINEER</div>
-    <div class="upgrade-title">ORMB Platform Upgrade: v2.9 → v5.1</div>
-    <div class="upgrade-version">Oracle Revenue Management &amp; Billing &nbsp;·&nbsp; 5 Environments &nbsp;·&nbsp; Built from Scratch &nbsp;·&nbsp; Zero Data Loss</div>
-    <div class="upgrade-desc">
-      Led the complete end-to-end upgrade of the ORMB (Oracle Revenue Management and Billing) platform from
-      version 2.9 to version 5.1 across 5 environments — Dev, QA, Staging, UAT, and Production. This was not
-      a simple patch. Every environment was built from the ground up: WebLogic server configuration, SSL/TLS
-      certificate management, secure access controls, CI/CD pipeline design for automated deployments across all
-      stages, and migration of 3 critical enterprise integrations (EFX, BO, Infogix) with zero data loss.
-      The upgrade also included cost optimization by replacing F5/AIX load balancers with Nginx-based load
-      balancing on Linux. Every environment was delivered production-ready with full security compliance.
-    </div>
-
-    <div class="upgrade-metrics">
-      <div class="upgrade-metric">
-        <div class="upgrade-metric-num">60%</div>
-        <div class="upgrade-metric-label">Faster environment setup</div>
-      </div>
-      <div class="upgrade-metric">
-        <div class="upgrade-metric-num">40%</div>
-        <div class="upgrade-metric-label">Reduction in downtime</div>
-      </div>
-      <div class="upgrade-metric">
-        <div class="upgrade-metric-num">50%</div>
-        <div class="upgrade-metric-label">Fewer deployment failures</div>
-      </div>
-      <div class="upgrade-metric">
-        <div class="upgrade-metric-num">0</div>
-        <div class="upgrade-metric-label">Data loss on migration</div>
-      </div>
-      <div class="upgrade-metric">
-        <div class="upgrade-metric-num">10</div>
-        <div class="upgrade-metric-label">Environments upgraded</div>
-      </div>
-      <div class="upgrade-metric">
-        <div class="upgrade-metric-num">3</div>
-        <div class="upgrade-metric-label">Integrations migrated</div>
-      </div>
-    </div>
-
-    <ul class="upgrade-bullets">
-      <li>Led end-to-end ORMB upgrade across 5 environments including full infrastructure build, application transformation, and server provisioning.</li>
-      <li>Built each environment from scratch: WebLogic configuration, SSL/TLS certificate setup, and secure access controls — reducing setup time by ~60%.</li>
-      <li>Designed Jenkins CI/CD pipelines for fully automated deployments across all environments — eliminating all manual deployment steps.</li>
-      <li>Migrated 3 external integrations — EFX, BO, and Infogix — from legacy to upgraded environments with zero data loss.</li>
-      <li>Monitored application health using Jenkins across distributed systems — reduced production downtime by ~40% through proactive alerting.</li>
-      <li>Acted as ORMB Administrator managing access control, certificate renewals, and password policies for 550+ users throughout the upgrade.</li>
-      <li>Replaced F5/AIX load balancing with Nginx-based solution on Linux — significant infrastructure cost reduction.</li>
-      <li>Enforced security compliance at every stage: certificate management, IAM policies, and network access controls across all environments.</li>
-    </ul>
-
-    <div class="upgrade-tags">
-      <span class="tag">Oracle ORMB v5.1</span>
-      <span class="tag">WebLogic</span>
-      <span class="tag">Jenkins CI/CD</span>
-      <span class="tag">Nginx</span>
-      <span class="tag">SSL/TLS</span>
-      <span class="tag">Linux</span>
-      <span class="tag">AIX</span>
-      <span class="tag">EFX Integration</span>
-      <span class="tag">BO Integration</span>
-      <span class="tag">Infogix Integration</span>
-      <span class="tag">IAM</span>
-      <span class="tag">Infrastructure from Scratch</span>
-      <span class="tag">Cost Optimization</span>
-    </div>
-  </div>
+<div class="section-tag">// flagship project</div>
+<h2 class="section-title">Signature Work</h2>
+<p class="section-sub">The most complex, high-stakes project of my career — owned end-to-end.</p>
+<div class="upgrade-card">
+<div class="upgrade-badge">⚡ ENTERPRISE PLATFORM UPGRADE · LEAD ENGINEER</div>
+<div class="upgrade-title">ORMB Platform Upgrade: v2.9 → v5.1</div>
+<div class="upgrade-version">Oracle Revenue Management &amp; Billing &nbsp;·&nbsp; 5 Environments &nbsp;·&nbsp; Built from Scratch &nbsp;·&nbsp; Zero Data Loss</div>
+<div class="upgrade-desc">
+Led the complete end-to-end upgrade of the ORMB (Oracle Revenue Management and Billing) platform from
+version 2.9 to version 5.1 across 5 environments — Dev, QA, Staging, UAT, and Production. This was not
+a simple patch. Every environment was built from the ground up: WebLogic server configuration, SSL/TLS
+certificate management, secure access controls, CI/CD pipeline design for automated deployments across all
+stages, and migration of 3 critical enterprise integrations (EFX, BO, Infogix) with zero data loss.
+The upgrade also included cost optimization by replacing F5/AIX load balancers with Nginx-based load
+balancing on Linux. Every environment was delivered production-ready with full security compliance.
+</div>
+<div class="upgrade-metrics">
+<div class="upgrade-metric">
+<div class="upgrade-metric-num">60%</div>
+<div class="upgrade-metric-label">Faster environment setup</div>
+</div>
+<div class="upgrade-metric">
+<div class="upgrade-metric-num">40%</div>
+<div class="upgrade-metric-label">Reduction in downtime</div>
+</div>
+<div class="upgrade-metric">
+<div class="upgrade-metric-num">50%</div>
+<div class="upgrade-metric-label">Fewer deployment failures</div>
+</div>
+<div class="upgrade-metric">
+<div class="upgrade-metric-num">0</div>
+<div class="upgrade-metric-label">Data loss on migration</div>
+</div>
+<div class="upgrade-metric">
+<div class="upgrade-metric-num">5</div>
+<div class="upgrade-metric-label">Environments upgraded</div>
+</div>
+<div class="upgrade-metric">
+<div class="upgrade-metric-num">3</div>
+<div class="upgrade-metric-label">Integrations migrated</div>
+</div>
+</div>
+<ul class="upgrade-bullets">
+<li>Led end-to-end ORMB upgrade across 5 environments including full infrastructure build, application transformation, and server provisioning.</li>
+<li>Built each environment from scratch: WebLogic configuration, SSL/TLS certificate setup, and secure access controls — reducing setup time by ~60%.</li>
+<li>Designed Jenkins CI/CD pipelines for fully automated deployments across all environments — eliminating all manual deployment steps with automated smoke tests and rollback triggers.</li>
+<li>Migrated 3 external integrations — EFX, BO, and Infogix — from legacy to upgraded environments with zero data loss.</li>
+<li>Monitored application health using Jenkins across distributed systems — reduced production downtime by ~40% through proactive alerting.</li>
+<li>Acted as ORMB Administrator managing access control, certificate renewals, and password policies for 550+ users throughout the upgrade.</li>
+<li>Replaced F5/AIX load balancing with Nginx-based solution on Linux — significant infrastructure cost reduction.</li>
+<li>Enforced security compliance at every stage: certificate management, IAM policies, and network access controls across all environments.</li>
+</ul>
+<div class="upgrade-tags">
+<span class="tag">Oracle ORMB v5.1</span>
+<span class="tag">WebLogic</span>
+<span class="tag">Jenkins CI/CD</span>
+<span class="tag">Nginx</span>
+<span class="tag">SSL/TLS</span>
+<span class="tag">Linux</span>
+<span class="tag">AIX</span>
+<span class="tag">EFX Integration</span>
+<span class="tag">BO Integration</span>
+<span class="tag">Infogix Integration</span>
+<span class="tag">IAM</span>
+<span class="tag">Infrastructure from Scratch</span>
+<span class="tag">Cost Optimization</span>
+</div>
+</div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects" class="projects-section">
-  <div class="section-tag">// projects</div>
-  <h2 class="section-title">Projects</h2>
-  <p class="section-sub">DevOps and cloud projects built with production-grade standards and real-world requirements.</p>
+<div class="section-tag">// projects</div>
+<h2 class="section-title">Projects</h2>
+<p class="section-sub">DevOps, DevSecOps, and AI-powered projects built with production-grade standards and real-world requirements.</p>
+<div class="projects-grid">
 
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-num">01 ——</div>
-      <div class="project-name">CI/CD Pipeline Automation</div>
-      <div class="project-desc">
-        End-to-end CI/CD: code commit → Docker image build → push to DockerHub/ECR → Kubernetes
-        deployment via Helm. GitLab CI/CD alongside Jenkins for merge request pipelines.
-        Prometheus &amp; Grafana monitoring for real-time deployment health tracking.
-      </div>
-      <a href="https://gitlab.com/aakashvemula/devops-cicd-pipeline" target="_blank" class="project-link">gitlab.com/aakashvemula/devops-cicd-pipeline ↗</a>
-      <div class="project-tags">
-        <span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">Kubernetes</span>
-        <span class="tag">Helm</span><span class="tag">GitLab CI/CD</span><span class="tag">Prometheus</span><span class="tag">Grafana</span>
-      </div>
-    </div>
+<div class="project-card featured">
+<div class="project-num">01 ——</div>
+<div class="featured-badge">★ FEATURED</div>
+<div class="project-name">CloudGuard-DevSecOps — 11-Stage Secure Pipeline</div>
+<div class="project-desc">
+End-to-end DevSecOps pipeline with 11 automated Jenkins stages and 8 security gates —
+SAST (Semgrep), SCA (pip-audit), Secrets Detection (Gitleaks), Container Scanning (Trivy),
+IaC Security (Checkov), and DAST (OWASP ZAP). Production-grade Flask REST API in a hardened
+multi-stage Docker image (non-root user, read-only filesystem, pinned base image). Pass/Fail
+gates block any HIGH/CRITICAL CVE or leaked secret. Kubernetes manifests enforce RBAC,
+NetworkPolicy (default-deny), and PodSecurityStandards — defence-in-depth across 6 layers.
+</div>
+<a href="https://gitlab.com/aakashvemula/cloudguard-devsecops" target="_blank" class="project-link">gitlab.com/aakashvemula/cloudguard-devsecops ↗</a>
+<div class="project-tags">
+<span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">Kubernetes</span>
+<span class="tag">Python · Flask</span><span class="tag">Semgrep</span><span class="tag">Gitleaks</span>
+<span class="tag">Trivy</span><span class="tag">Checkov</span><span class="tag">OWASP ZAP</span>
+<span class="tag">Shift-Left Security</span>
+</div>
+</div>
 
-    <div class="project-card">
-      <div class="project-num">02 ——</div>
-      <div class="project-name">AWS Infrastructure with Terraform &amp; Ansible</div>
-      <div class="project-desc">
-        Terraform modules to provision full AWS environments — VPC, subnets, EC2, IAM, S3, CloudWatch.
-        Ansible playbooks for server configuration. Terraform workspaces for dev/staging/prod replication
-        — reduced environment setup time by ~70%.
-      </div>
-      <a href="https://gitlab.com/aakashvemula/terraform-ansible-aws-infra" target="_blank" class="project-link">gitlab.com/aakashvemula/terraform-ansible-aws-infra ↗</a>
-      <div class="project-tags">
-        <span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">AWS EC2</span>
-        <span class="tag">VPC</span><span class="tag">S3</span><span class="tag">IAM</span><span class="tag">CloudWatch</span>
-      </div>
-    </div>
+<div class="project-card featured">
+<div class="project-num">02 ——</div>
+<div class="featured-badge">★ AI-POWERED</div>
+<div class="project-name">Jenkins AI Chatbot — Local LLM DevOps Assistant</div>
+<div class="project-desc">
+AI-powered chatbot that lets engineers interact with Jenkins using natural language —
+query job statuses, trigger builds, and troubleshoot failures conversationally. Built on a
+fully local, privacy-first LLM stack: Ollama running llama3, a Python Flask backend
+integrating with the Jenkins REST API, and a Gradio web UI. Zero cloud dependency —
+no code or logs ever leave the machine, making it safe for enterprise environments.
+</div>
+<div class="project-tags">
+<span class="tag">Ollama · llama3</span><span class="tag">Python</span><span class="tag">Flask</span>
+<span class="tag">Gradio</span><span class="tag">Jenkins REST API</span><span class="tag">Local LLM</span>
+<span class="tag">GenAI for DevOps</span>
+</div>
+</div>
 
-    <div class="project-card">
-      <div class="project-num">03 ——</div>
-      <div class="project-name">Jenkins Automation Suite</div>
-      <div class="project-desc">
-        Three production-grade Jenkins automations: (1) Auto release notes generator —
-        eliminated 100% of manual docs, (2) Disk monitoring &amp; auto-cleanup across 40+ servers
-        every 4 hours, (3) Fault-tolerant SQL execution pipeline with error artifact capture.
-      </div>
-      <div class="project-tags">
-        <span class="tag">Jenkins</span><span class="tag">Bash</span><span class="tag">Groovy</span>
-        <span class="tag">Linux</span><span class="tag">AIX</span><span class="tag">SQL</span>
-      </div>
-    </div>
+<div class="project-card">
+<div class="project-num">03 ——</div>
+<div class="project-name">End-to-End CI/CD &amp; GitOps Pipeline</div>
+<div class="project-desc">
+Full delivery pipeline: code commit → Docker image build → push to ECR → GitOps-driven
+Kubernetes deployment via Helm + ArgoCD. GitLab CI/CD alongside Jenkins for merge request
+pipelines. Prometheus &amp; Grafana observability layer for real-time deployment health tracking.
+</div>
+<a href="https://gitlab.com/aakashvemula/devops-cicd-pipeline" target="_blank" class="project-link">gitlab.com/aakashvemula/devops-cicd-pipeline ↗</a>
+<div class="project-tags">
+<span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">Kubernetes</span>
+<span class="tag">Helm</span><span class="tag">ArgoCD</span><span class="tag">GitOps</span>
+<span class="tag">GitLab CI/CD</span><span class="tag">Prometheus</span><span class="tag">Grafana</span>
+</div>
+</div>
 
-    <div class="project-card">
-      <div class="project-num">04 ——</div>
-      <div class="project-name">K8s Microservices on AWS EKS</div>
-      <div class="project-desc">
-        Full Kubernetes cluster on AWS EKS with multi-container microservices, LoadBalancer
-        services, rolling updates, liveness/readiness probes, ConfigMaps, Secrets, and
-        Helm chart-based deployments across dev, staging, and production.
-      </div>
-      <div class="project-tags">
-        <span class="tag">Kubernetes</span><span class="tag">AWS EKS</span><span class="tag">Docker</span>
-        <span class="tag">Helm</span><span class="tag">HPA</span><span class="tag">Ingress</span>
-      </div>
-    </div>
-  </div>
+<div class="project-card">
+<div class="project-num">04 ——</div>
+<div class="project-name">AWS Infrastructure with Terraform &amp; Ansible</div>
+<div class="project-desc">
+Terraform modules to provision full AWS environments — VPC, subnets, EC2, IAM, S3, CloudWatch.
+Ansible playbooks for server configuration. Terraform workspaces for dev/staging/prod replication
+— reduced environment setup time by ~70%. Checkov IaC scanning integrated into the pipeline.
+</div>
+<a href="https://gitlab.com/aakashvemula/terraform-ansible-aws-infra" target="_blank" class="project-link">gitlab.com/aakashvemula/terraform-ansible-aws-infra ↗</a>
+<div class="project-tags">
+<span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">AWS EC2</span>
+<span class="tag">VPC</span><span class="tag">S3</span><span class="tag">IAM</span>
+<span class="tag">CloudWatch</span><span class="tag">Checkov</span>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-num">05 ——</div>
+<div class="project-name">Jenkins Automation Suite</div>
+<div class="project-desc">
+Three production-grade Jenkins automations: (1) Auto release notes generator —
+eliminated 100% of manual docs, (2) Disk monitoring &amp; auto-cleanup across 40+ servers
+every 4 hours, (3) Fault-tolerant SQL execution pipeline with error artifact capture.
+</div>
+<div class="project-tags">
+<span class="tag">Jenkins</span><span class="tag">Bash</span><span class="tag">Groovy</span>
+<span class="tag">Linux</span><span class="tag">AIX</span><span class="tag">SQL</span>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-num">06 ——</div>
+<div class="project-name">Kubernetes Microservices Platform</div>
+<div class="project-desc">
+Multi-container microservices on Kubernetes with LoadBalancer services, rolling updates,
+liveness/readiness probes, ConfigMaps, Secrets, HPA, and Helm chart-based deployments
+across dev, staging, and production — hardened with RBAC and NetworkPolicy.
+</div>
+<div class="project-tags">
+<span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Helm</span>
+<span class="tag">HPA</span><span class="tag">Ingress</span><span class="tag">RBAC</span>
+</div>
+</div>
+
+</div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
-  <div class="contact-inner">
-    <div class="section-tag" style="text-align:center">// let's connect</div>
-    <h2 class="section-title" style="text-align:center">Open to<br>Opportunities.</h2>
-    <p class="section-sub" style="margin:0 auto;text-align:center;max-width:440px;">
-      Available for DevOps Engineer, Cloud Engineer, and ORMB-related roles.
-      Let's build something impactful together.
-    </p>
-    <div class="contact-links">
-      <a href="mailto:vemula.aakash2018@gmail.com" class="contact-link-item">
-        <div class="contact-link-label">// email</div>
-        <div class="contact-link-value">vemula.aakash2018@gmail.com</div>
-      </a>
-      <a href="tel:+916304335627" class="contact-link-item">
-        <div class="contact-link-label">// phone</div>
-        <div class="contact-link-value">+91 6304335627</div>
-      </a>
-      <a href="https://linkedin.com/in/aakashvemula" target="_blank" class="contact-link-item">
-        <div class="contact-link-label">// linkedin</div>
-        <div class="contact-link-value">linkedin.com/in/aakashvemula ↗</div>
-      </a>
-      <a href="https://gitlab.com/aakashvemula" target="_blank" class="contact-link-item">
-        <div class="contact-link-label">// gitlab</div>
-        <div class="contact-link-value">gitlab.com/aakashvemula ↗</div>
-      </a>
-    </div>
-    <a href="mailto:vemula.aakash2018@gmail.com" class="contact-cta">Send me an email →</a>
-  </div>
+<div class="contact-inner">
+<div class="section-tag" style="text-align:center">// let's connect</div>
+<h2 class="section-title" style="text-align:center">Open to<br>Opportunities.</h2>
+<p class="section-sub" style="margin:0 auto;text-align:center;max-width:440px;">
+Available for DevOps Engineer, SRE, Platform Engineer, Cloud Engineer, and ORMB-related roles.
+Let's build something impactful together.
+</p>
+<div class="contact-links">
+<a href="mailto:vemula.aakash2018@gmail.com" class="contact-link-item">
+<div class="contact-link-label">// email</div>
+<div class="contact-link-value">vemula.aakash2018@gmail.com</div>
+</a>
+<a href="tel:+916304335627" class="contact-link-item">
+<div class="contact-link-label">// phone</div>
+<div class="contact-link-value">+91 6304335627</div>
+</a>
+<a href="https://linkedin.com/in/aakashvemula" target="_blank" class="contact-link-item">
+<div class="contact-link-label">// linkedin</div>
+<div class="contact-link-value">linkedin.com/in/aakashvemula ↗</div>
+</a>
+<a href="https://gitlab.com/aakashvemula" target="_blank" class="contact-link-item">
+<div class="contact-link-label">// gitlab</div>
+<div class="contact-link-value">gitlab.com/aakashvemula ↗</div>
+</a>
+</div>
+<a href="mailto:vemula.aakash2018@gmail.com" class="contact-cta">Send me an email →</a>
+</div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2026 Aakash Vemula</span>
-  <span style="letter-spacing:1px;">DevOps Engineer II · ORMB · Kubernetes · Terraform · AWS</span>
+<span>© 2026 Aakash Vemula</span>
+<span style="letter-spacing:1px;">DevOps Engineer II · DevSecOps · Kubernetes (AKS) · Terraform · AWS · Azure</span>
 </footer>
 
 </body>
